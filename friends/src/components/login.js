@@ -1,16 +1,16 @@
 import React from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { axiosWithAuth }  from "../utils/axiosWithAuth";
 
 class Login extends React.Component {
   state = {
     credentials: {
-      username: "",
-      password: "",
+      username: "lambda",
+      password: "school",
     },
   };
 
   handleChange = (e) => {
-    this.state({
+    this.setState({
       credentials: {
         ...this.state.credentails,
         [e.target.name]: e.target.value,
@@ -41,8 +41,8 @@ class Login extends React.Component {
       .post("/login", this.state.credentials)
       // 2. if request is successful, log token
       .then((res) => {
-        console.log(res.data.token);
-        localStorage.setItem("token", res.data.token);
+        console.log("Login Res.data.token", res.data.payload);
+        localStorage.setItem("token", res.data.payload);
         console.log("this.props", this.props);
         this.props.history.push("/protected");
       })
