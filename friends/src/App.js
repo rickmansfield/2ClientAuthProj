@@ -13,6 +13,7 @@ import './App.css';
         .post("/logout")
         .then((res) => {
           localStorage.removeItem("token");
+          // console.log('Logout Res Data Here:', res);
           // console.log(window);
           window.location.href = "/login";
         })

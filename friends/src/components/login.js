@@ -35,7 +35,7 @@ class Login extends React.Component {
 
   login = (e) => {
     e.preventDefault();
-    console.log("Login!! ");
+    console.log("Login Worked!! ");
     // 1. use axios to make post request
     axiosWithAuth()
       .post("/login", this.state.credentials)
