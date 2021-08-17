@@ -1,22 +1,22 @@
 import React from "react";
-import { axiosWithAuth }  from "../utils/axiosWithAuth";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 class Login extends React.Component {
   state = {
     credentials: {
-      username: "lambda",
-      password: "school",
-    },
+      username: '',
+      password: ''
+    }
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       credentials: {
-        ...this.state.credentails,
-        [e.target.name]: e.target.value,
-      },
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
     });
-    console.log('handleChange gives me:', this.state.credentials);//notice notice notice notice
+    console.log('handleChange fired and gives me:', this.state.credentials);
   };
 
   //old method. 
@@ -34,15 +34,16 @@ class Login extends React.Component {
 
   login = (e) => {
     e.preventDefault();
-    console.log("Login Fired!! ");
     // 1. use axios to make post request
-    console.log('Credentials are:', this.state);//NOTICE THIS .........
+    console.log('Login Fired!! Credentials are:', this.state);
     axiosWithAuth()
       .post("/login", this.state.credentials)
       // 2. if request is successful, log token
       .then((res) => {
         console.log("Login Res.data.token", res.data.payload);
         localStorage.setItem("token", res.data.payload);
+        // localStorage.setItem("username", res.data.payload);
+        // localStorage.setItem("password", res.data.payload);
         console.log("this.props", this.props);
         this.props.history.push("/protected");
       })
