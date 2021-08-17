@@ -1,5 +1,6 @@
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { AddFriendForm } from './AddFriendForm'
 
 class FriendsList extends React.Component {
     state = {
