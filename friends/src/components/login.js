@@ -14,11 +14,10 @@ class Login extends React.Component {
       credentials: {
         ...this.state.credentails,
         [e.target.name]: e.target.value,
-      }
-    })
+      },
+    });
+    console.log('handleChange gives me:', this.state.credentials);//notice notice notice notice
   };
-
-
 
   //old method. 
   // login = e => {
@@ -35,8 +34,9 @@ class Login extends React.Component {
 
   login = (e) => {
     e.preventDefault();
-    console.log("Login Worked!! ");
+    console.log("Login Fired!! ");
     // 1. use axios to make post request
+    console.log('Credentials are:', this.state);//NOTICE THIS .........
     axiosWithAuth()
       .post("/login", this.state.credentials)
       // 2. if request is successful, log token

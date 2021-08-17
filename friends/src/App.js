@@ -24,15 +24,17 @@ import './App.css';
       <Router>
         <div className="App">
           <ul>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link onClick={logout}>Logout</Link>
-            </li>
-            <li>
+            
+              <button>
+              <Link to="/login">Login Page</Link>
+              </button>
+
+              <button onClick={logout}>Logout</button>
+            
+              <button>
               <Link to="/protected">Friends List</Link>
-            </li>
+              </button>
+            
           </ul>
           <Switch>
             <PrivateRoute exact path="/protected" component={FriendsList} />
