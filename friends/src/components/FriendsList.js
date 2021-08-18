@@ -40,7 +40,7 @@ class FriendsList extends React.Component {
     }
 
     render() {
-        const { friends } = this.state;
+        // const { friends } = this.state;
         return (
             <div className="friends-container">
                 {/* {friends.map(friend => {
