@@ -1,9 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const port = process.env.PORT || 5000;
+const port = 5000;
 const app = express();
-// const data = require("./data");
 const token =
   'esfeyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NUIhkufemQifQ';
 
@@ -49,6 +48,12 @@ let friends = [
 app.use(bodyParser.json());
 
 app.use(cors());
+
+let nextId = 7;
+
+function getNextId() {
+  return nextId++;
+}
 
 function authenticator(req, res, next) {
   const { authorization } = req.headers;
@@ -96,6 +101,14 @@ app.get('/api/friends/:id', authenticator, (req, res) => {
   }
 });
 
+app.post('/api/friends', authenticator, (req, res) => {
+  const friend = { id: getNextId(), ...req.body };
+
+  friends = [...friends, friend];
+
+  res.send(friends);
+});
+
 app.get('/api/', (req, res) => {
   res.status(200).json({status: "served"});
 });
@@ -103,4 +116,3 @@ app.get('/api/', (req, res) => {
 app.listen(port, () => {
   console.log(`server listening on port ${port}`);
 });
-
